@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="emp_detailsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="emp_info">
+    <Key>
+      <PropertyRef Name="emp_id" />
+    </Key>
+    <Property Name="emp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="emp_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="emp_dept" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="contact_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="emp_detailsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="emp_info" EntityType="Self.emp_info" />
+    <FunctionImport Name="allinfo" ReturnType="Collection(emp_detailsModel.allinfo_Result)" />
+    <FunctionImport Name="emp_delete">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="emp_insert">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="dept" Mode="In" Type="String" />
+      <Parameter Name="contact" Mode="In" Type="Decimal" />
+      <Parameter Name="address" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="emp_update">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="dept" Mode="In" Type="String" />
+      <Parameter Name="contact" Mode="In" Type="Decimal" />
+      <Parameter Name="address" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="allinfo_Result">
+    <Property Type="Int32" Name="emp_id" Nullable="false" />
+    <Property Type="String" Name="emp_name" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="emp_dept" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="contact_no" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="address" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>
